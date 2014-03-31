@@ -1,5 +1,5 @@
 ---
-abstract: "Page Navigator plugin for Mojolicious\nThis module has derived from L<Mojolicious::Plugin::PageNavigator>"
+abstract: 'Page Navigator plugin for Mojolicious'
 author:
   - 'dokechin <>'
 build_requires:
@@ -28,7 +28,7 @@ no_index:
 provides:
   Mojolicious::Plugin::BootstrapPagination:
     file: lib/Mojolicious/Plugin/BootstrapPagination.pm
-    version: 0.08
+    version: 0.09
 requires:
   Mojolicious: 4.0
   perl: 5.008001
@@ -36,6 +36,6 @@ resources:
   bugtracker: https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination/issues
   homepage: https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination
   repository: git://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination.git
-version: 0.08
+version: 0.09
 x_contributors:
   - 'dokechin <user@user-PC.(none)>'
