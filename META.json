@@ -56,7 +56,7 @@
    "provides" : {
       "Mojolicious::Plugin::BootstrapPagination" : {
          "file" : "lib/Mojolicious/Plugin/BootstrapPagination.pm",
-         "version" : "0.09"
+         "version" : "0.11"
       }
    },
    "release_status" : "stable",
@@ -66,12 +66,14 @@
       },
       "homepage" : "https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination",
       "repository" : {
-         "url" : "git://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination.git",
+         "url" : "https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination.git",
          "web" : "https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination"
       }
    },
-   "version" : "0.09",
+   "version" : "0.11",
    "x_contributors" : [
-      "dokechin <user@user-PC.(none)>"
+      "dokechin <user@user-PC.(none)>",
+      "Andrey Kuzmin <chips@reg.ru>",
+      "dokechin <ttatsumi@ra2.so-net.ne.jp>"
    ]
 }
