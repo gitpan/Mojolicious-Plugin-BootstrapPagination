@@ -28,7 +28,7 @@ no_index:
 provides:
   Mojolicious::Plugin::BootstrapPagination:
     file: lib/Mojolicious/Plugin/BootstrapPagination.pm
-    version: 0.11
+    version: 0.12
 requires:
   Mojolicious: 4.0
   perl: 5.008001
@@ -36,8 +36,9 @@ resources:
   bugtracker: https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination/issues
   homepage: https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination
   repository: https://github.com/dokechin/Mojolicious-Plugin-BootstrapPagination.git
-version: 0.11
+version: 0.12
 x_contributors:
-  - 'dokechin <user@user-PC.(none)>'
   - 'Andrey Kuzmin <chips@reg.ru>'
   - 'dokechin <ttatsumi@ra2.so-net.ne.jp>'
+  - 'Alexander Groshev <sattellite@yandex.ru>'
+  - 'dokechin <user@user-PC.(none)>'
