@@ -6,7 +6,7 @@ use Mojo::ByteStream 'b';
 use strict;
 use warnings;
 
-our $VERSION = "0.12";
+our $VERSION = "0.13";
 
 # Homer: Well basically, I just copied the plant we have now.
 #        Then, I added some fins to lower wind resistance.  
@@ -18,18 +18,22 @@ sub  register{
 
   $app->helper( bootstrap_pagination => sub{
       my ( $self, $actual, $count, $opts ) = @_;
+
+      my $localize = ( $opts->{localize} || $args->{localize} ) ?
+          ( $opts->{localize} || $args->{localize} ) : undef;
+
       $count = ceil($count);
       return "" unless $count > 1;
       $opts = {} unless $opts;
-      my $round = $opts->{round} || 4;
-      my $param = $opts->{param} || "page";
-      my $class = $opts->{class} || "";
+      my $round = $opts->{round} || $args->{round} || 4;
+      my $param = $opts->{param} || $args->{param} || "page";
+      my $class = $opts->{class} || $args->{class} || "";
       if ($class ne ""){
           $class = " " . $class;
       }
-      my $outer = $opts->{outer} || 2;
-      my $query = $opts->{query} || "";
-      my $start = $opts->{start} // 1;
+      my $outer = $opts->{outer} || $args->{outer} || 2;
+      my $query = exists $opts->{query} ? $opts->{query} : $args->{query} || "";
+      my $start = $opts->{start} // $args->{start} // 1;
       my @current = ( $actual - $round .. $actual + $round );
       my @first   = ($start.. $start + $outer - 1);
       my @tail    = ( $count - $outer + 1 .. $count );
@@ -52,6 +56,11 @@ sub  register{
       my $last_num = -1;
       foreach my $number( @ret ){
         my $show_number = $start > 0 ? $number : ( $number =~ /\d+/ ? $number + 1 : $number );
+
+        if ( $localize ) {
+            $show_number = $localize->($self, $show_number);
+        }
+
         if( $number eq ".." && $last_num < $actual ){
           my $offset = ceil( ( $actual - $round ) / 2 ) + 1 ;
           $html .= "<li><a href=\"" . $self->url_with->query( [$param => $start == 0 ? $offset + 1 : $offset] ) . $query ."\" >&hellip;</a></li>";
@@ -144,6 +153,37 @@ Additional query string to url. Optional.
 Start number for query string. Default: 1. Optional.
 
 =back
+
+=head1 INTERNATIONALIZATION
+
+If you want to use internationalization (I18N), you can pass a code reference via I<localize>.
+
+  plugin 'bootstrap_pagination' => {
+    localize => \&localize,
+  };
+  
+  sub localize {
+    my ($number) = @_;
+  
+    my %trans = (
+      1 => 'one',
+      2 => 'two',
+      6 => 'six',
+      7 => 'seven',
+      8 => 'eight',
+      9 => 'nine',
+     10 => 'ten',
+     11 => 'eleven',
+     12 => 'twelve',
+     13 => 'thirteen',
+     14 => 'fourteen',
+     15 => 'fifteen',
+    );
+  
+    return $trans{$number};
+  }
+
+This will print the words instead of the numbers.
 
 =head1 SEE ALSO
 
